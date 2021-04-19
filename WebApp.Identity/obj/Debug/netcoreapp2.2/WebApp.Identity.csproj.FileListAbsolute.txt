@@ -27,7 +27,6 @@ C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebAp
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.pdb
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.Views.dll
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.Views.pdb
-C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CoreCompileInputs.cache
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.Views.pdb
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.dll
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.pdb
@@ -36,3 +35,4 @@ C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Success.cshtml.g.cs
 C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.cshtml.g.cs
+C:\Users\Diogo\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CoreCompileInputs.cache
