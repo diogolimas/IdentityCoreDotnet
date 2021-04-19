@@ -45,9 +45,9 @@ namespace WebApp.Identity
                     sql.MigrationsAssembly(migrationAssembly))
                 );
 
-            services.AddIdentityCore<IdentityUser>(options => { });
-            services.AddScoped<IUserStore<IdentityUser>, 
-                UserOnlyStore<IdentityUser,                                    
+            services.AddIdentityCore<MyUser>(options => { });
+            services.AddScoped<IUserStore<MyUser>, 
+                UserOnlyStore<MyUser,                                    
                 IdentityDbContext>>();
             services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
         }
