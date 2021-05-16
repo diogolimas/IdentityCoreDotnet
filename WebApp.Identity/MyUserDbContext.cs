@@ -17,6 +17,18 @@ namespace WebApp.Identity
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Organization>(
+                    org =>
+                    {
+                        org.ToTable("Organizations");
+                        org.HasKey(x => x.Id);
+                        org.HasMany<MyUser>()
+                        .WithOne()
+                        .HasForeignKey(x => x.OrgId)
+                        .IsRequired(false); // é obrigatório?, não
+                    }
+            );
         }
 
     }

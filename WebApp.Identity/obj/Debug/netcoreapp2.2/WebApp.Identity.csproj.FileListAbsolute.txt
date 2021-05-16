@@ -46,7 +46,6 @@ D:\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.d
 D:\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.pdb
 D:\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.Views.dll
 D:\dev\WebApp.Identity\WebApp.Identity\bin\Debug\netcoreapp2.2\WebApp.Identity.Views.pdb
-D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csprojAssemblyReference.cache
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.AssemblyInfoInputs.cache
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.AssemblyInfo.cs
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CoreCompileInputs.cache
@@ -74,3 +73,5 @@ D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.d
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.pdb
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.genruntimeconfig.cache
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CopyComplete
+D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csprojAssemblyReference.cache
+D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Error.cshtml.g.cs

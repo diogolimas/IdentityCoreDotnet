@@ -18,9 +18,12 @@ namespace WebApp.Identity.Controllers
     {
         private readonly UserManager<MyUser> _userManager;
 
-        public HomeController(UserManager<MyUser> userManager)
+        public IUserClaimsPrincipalFactory<MyUser> userClaimsPrincipalFactory { get; }
+
+        public HomeController(UserManager<MyUser> userManager, IUserClaimsPrincipalFactory<MyUser> userClaimsPrincipalFactory)
         {
             _userManager = userManager;
+            this.userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         }
         public IActionResult Index()
         {
@@ -46,7 +49,13 @@ namespace WebApp.Identity.Controllers
                     };
                     var result = await _userManager.CreateAsync(
                         user, model.Password);
+                    if (result.Errors.Count() > 0)
+                    {
+                        return RedirectToAction("Error");
+                    }
+                        
                 }
+                
                 return View("Success");
             }
             return View();
@@ -67,13 +76,9 @@ namespace WebApp.Identity.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    var identity = new ClaimsIdentity("cookies");
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                    var principal = await this.userClaimsPrincipalFactory.CreateAsync(user);
 
-                    AuthenticationHttpContextExtensions.SignInAsync(HttpContext, new ClaimsPrincipal(identity));
-                    
-
+                    await HttpContext.SignInAsync("Identity.Application", principal);
 
                     return RedirectToAction("About");
                 }

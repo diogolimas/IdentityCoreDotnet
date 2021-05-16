@@ -45,11 +45,12 @@ namespace WebApp.Identity
                     sql.MigrationsAssembly(migrationAssembly))
                 );
 
-            services.AddIdentityCore<MyUser>(options => { });
-            services.AddScoped<IUserStore<MyUser>, 
-                UserOnlyStore<MyUser,                                    
-                MyUserDbContext>>();
-            services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
+            services.AddIdentity<MyUser, IdentityRole>(options => { })
+                .AddEntityFrameworkStores<MyUserDbContext>();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<MyUser>, MyUserClaimsPrincipalFactory>();
+
+           services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/Login");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
