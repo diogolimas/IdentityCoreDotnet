@@ -40,7 +40,7 @@ namespace WebApp.Identity
             var connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = IdentityCurso; Integrated Security = True;";
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<IdentityDbContext>(
+            services.AddDbContext<MyUserDbContext>(
                 opt => opt.UseSqlServer(connectionString, sql =>
                     sql.MigrationsAssembly(migrationAssembly))
                 );
@@ -48,7 +48,7 @@ namespace WebApp.Identity
             services.AddIdentityCore<MyUser>(options => { });
             services.AddScoped<IUserStore<MyUser>, 
                 UserOnlyStore<MyUser,                                    
-                IdentityDbContext>>();
+                MyUserDbContext>>();
             services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
         }
 

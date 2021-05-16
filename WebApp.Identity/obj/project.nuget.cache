@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6rXA/O+1pQ5uy1jBTaxEaysRzGq3qwXN3+H/+94cmWGenGpeSwJITH99Khwl5ZyHaFe/Q9I/rlCLwxBTtkBfzQ==",
+  "dgSpecHash": "vLGBDf+3Nj2dz3iJwi1PqGwv/TYMRLYRMUlO1O9PvA2VEaIebjsNUMiinny+JDqLE3+ySeSpsvM6NCqSb72INg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diogo\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+  "projectFilePath": "D:\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diogo\\.nuget\\packages\\dapper\\1.60.6\\dapper.1.60.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",

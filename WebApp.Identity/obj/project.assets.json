@@ -12989,11 +12989,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diogo\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+      "projectUniqueName": "D:\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
       "projectName": "WebApp.Identity",
-      "projectPath": "C:\\Users\\Diogo\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+      "projectPath": "D:\\dev\\WebApp.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
       "packagesPath": "C:\\Users\\Diogo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diogo\\dev\\WebApp.Identity\\WebApp.Identity\\obj\\",
+      "outputPath": "D:\\dev\\WebApp.Identity\\WebApp.Identity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
