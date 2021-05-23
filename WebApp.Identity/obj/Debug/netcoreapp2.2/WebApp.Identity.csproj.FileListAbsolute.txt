@@ -75,3 +75,5 @@ D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.g
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CopyComplete
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csprojAssemblyReference.cache
 D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Error.cshtml.g.cs
+D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\ForgotPassword.cshtml.g.cs
+D:\dev\WebApp.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\ResetPassword.cshtml.g.cs

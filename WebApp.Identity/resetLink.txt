@@ -1,0 +1,1 @@
+http://localhost:55596/Home/ResetPassword?token=CfDJ8I4rkwqhmN1Bq7NAbwbYHy05m71p2Fg98vmiMqPXop1s1dx%2BfsIKJDfYmMX6ZNF9vR%2FNaFenlnIb5QeV5FXpCTt%2Fe1AUK5kBb%2B7fNlKGmG3pSYHx9fac4aEYgsr1ipb%2B5hePz%2F8BsuG7DgSroXcjzXyygjEp8nrcuNINFNOhTt18u2NIeEAGkkR%2F%2FD2Ki0NAX5xDXzyw%2BIqKs7oHRsrRp2vyqNGQhe8Mfp78VJAMAnu0&email=diogo.libras43@gmail.com

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Identity.Models;
 
@@ -39,7 +40,7 @@ namespace WebApp.Identity.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(Models.RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -71,9 +72,72 @@ namespace WebApp.Identity.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> ForgotPassword(Models.ForgotPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var resetURL = Url.Action("ResetPassword", "Home",
+                        new { token = token, email = model.Email }, Request.Scheme);
+
+                    System.IO.File.WriteAllText("resetLink.txt", resetURL);
+                    return View("Success");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword(string token, string email)
+        {
+            return View(new Models.ResetPasswordModel { Token = token, Email = email});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(Models.ResetPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+                    if (!result.Succeeded)
+                    {
+                        foreach (var erro in result.Errors)
+                        {
+                            ModelState.AddModelError("", erro.Description);
+                        }
+                        return View();
+                    }
+                    return View("Success");
+                }
+                ModelState.AddModelError("", "Invalid Request");
+
+            }
+            return View();
+        }
+
+ 
+
+        [HttpPost]
+        public async Task<IActionResult> Login(Models.LoginModel model)
         {
             if (ModelState.IsValid)
             {
