@@ -144,6 +144,13 @@ namespace WebApp.Identity.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
+
+                    if(! await _userManager.IsEmailConfirmedAsync(user))
+                    {
+                        ModelState.AddModelError("", "E-mail não está válido");
+                        return View();
+                    }
+
                     var principal = await this.userClaimsPrincipalFactory.CreateAsync(user);
 
                     await HttpContext.SignInAsync("Identity.Application", principal);

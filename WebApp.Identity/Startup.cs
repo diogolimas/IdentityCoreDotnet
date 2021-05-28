@@ -45,7 +45,9 @@ namespace WebApp.Identity
                     sql.MigrationsAssembly(migrationAssembly))
                 );
 
-            services.AddIdentity<MyUser, IdentityRole>(options => { })
+            services.AddIdentity<MyUser, IdentityRole>(options => {
+                options.SignIn.RequireConfirmedEmail = true;
+            })
                 .AddEntityFrameworkStores<MyUserDbContext>()
                 .AddDefaultTokenProviders();
 
