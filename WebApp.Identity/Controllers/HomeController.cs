@@ -50,13 +50,27 @@ namespace WebApp.Identity.Controllers
                     user = new MyUser
                     {
                         Id = Guid.NewGuid().ToString(),
-                        UserName = model.UserName
+                        UserName = model.UserName,
+                        Email = model.UserName
                     };
                     var result = await _userManager.CreateAsync(
                         user, model.Password);
-                    if (result.Errors.Count() > 0)
+                    if (result.Succeeded)
                     {
-                        return RedirectToAction("Error");
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationEmail = Url.Action("ConfirmEmailAddress", "Home",
+                            new { token = token, email = user.Email }, Request.Scheme);
+
+                        System.IO.File.WriteAllText("resetLink.txt", confirmationEmail);
+                    }
+                    else
+                    {
+                        foreach(var erro in result.Errors)
+                        {
+                            ModelState.AddModelError("", erro.Description);
+                        }
+
+                        return View();
                     }
                         
                 }
@@ -142,20 +156,33 @@ namespace WebApp.Identity.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(model.UserName);
-                if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+                if(user != null && await _userManager.IsLockedOutAsync(user))
                 {
-
-                    if(! await _userManager.IsEmailConfirmedAsync(user))
+                    if(!await _userManager.CheckPasswordAsync(user, model.Password))
                     {
-                        ModelState.AddModelError("", "E-mail não está válido");
-                        return View();
+
+                        if(! await _userManager.IsEmailConfirmedAsync(user))
+                        {
+                            ModelState.AddModelError("", "E-mail não está válido");
+                            return View();
+                        }
+
+                        await _userManager.ResetAccessFailedCountAsync(user);
+
+                        var principal = await this.userClaimsPrincipalFactory.CreateAsync(user);
+
+                        await HttpContext.SignInAsync("Identity.Application", principal);
+
+                        return RedirectToAction("About");
+
                     }
+                    await _userManager.AccessFailedAsync(user);
+                    
+                    if(await _userManager.IsLockedOutAsync(user))
+                    {
+                        //Email deve ser enviado sugerindo com sugestão de Mudança de senha
 
-                    var principal = await this.userClaimsPrincipalFactory.CreateAsync(user);
-
-                    await HttpContext.SignInAsync("Identity.Application", principal);
-
-                    return RedirectToAction("About");
+                    }
                 }
 
                 ModelState.AddModelError("", "Usuário ou senha inválida");
@@ -181,6 +208,26 @@ namespace WebApp.Identity.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmailAddress(string token, string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if(user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+
+                if(result.Succeeded)
+                {
+                    return View("Success");
+                }
+            }
+
+            return View("Error");
+
+
         }
     }
 }
