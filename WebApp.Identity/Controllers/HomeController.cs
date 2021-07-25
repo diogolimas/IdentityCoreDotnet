@@ -169,6 +169,18 @@ namespace WebApp.Identity.Controllers
 
                         await _userManager.ResetAccessFailedCountAsync(user);
 
+                        if(await _userManager.GetTwoFactorEnabledAsync(user))
+                        {
+                            var validator = await _userManager.GetValidTwoFactorProvidersAsync(user);
+                            if(validator.Contains("Email"))
+                            {
+                                var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+                                System.IO.File.WriteAllText("email2sv.txt", token);
+                                await HttpContext.SignInAsync("Identity.TwoFactorUserIdScheme", Store2FA(user.Id, "Email"));
+
+                                return RedirectToAction("TwoFactor");
+                            }
+                        }
                         var principal = await this.userClaimsPrincipalFactory.CreateAsync(user);
 
                         await HttpContext.SignInAsync("Identity.Application", principal);
@@ -228,6 +240,18 @@ namespace WebApp.Identity.Controllers
             return View("Error");
 
 
+        }
+
+        [HttpGet]
+        public IActionResult TwoFactor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TwoFactor(TwoFactorModel model)
+        {
+            return View();
         }
     }
 }
