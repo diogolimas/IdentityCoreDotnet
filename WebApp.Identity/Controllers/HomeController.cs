@@ -156,9 +156,10 @@ namespace WebApp.Identity.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(model.UserName);
-                if (user != null && await _userManager.IsLockedOutAsync(user))
+                if (user != null //&& await _userManager.IsLockedOutAsync(user)
+                    )
                 {
-                    if (!await _userManager.CheckPasswordAsync(user, model.Password))
+                    if (!await _userManager.CheckPasswordAsync(user, model.PassWord))
                     {
 
                         if (!await _userManager.IsEmailConfirmedAsync(user))
